@@ -22,7 +22,13 @@ function createMapsButton(options: { location: string; retries: number }) {
       throw 'nav not found';
     }
 
-    const mapsElement = <Element>nav.item(0)?.lastChild;
+    const mapsElement =
+      /* Replaces the Google-provided 'Map' button that only shows an image
+       * of the map (which is useless). Otherwise, it will replace the
+       * last element in the nav bar. The selector might change in the future.
+       */
+      document.querySelector("[aria-label='Add Map'")?.parentElement ??
+      <Element>nav.item(0)?.lastChild;
     console.log(mapsElement);
     if (!mapsElement) {
       throw 'mapsElement could not be created';
