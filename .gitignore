@@ -140,3 +140,6 @@ out
 
 # macOS-specific files
 .DS_Store
+
+# Unpacked extensions
+*.zip
