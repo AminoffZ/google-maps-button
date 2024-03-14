@@ -1,23 +1,25 @@
 <div class="container">
   <div class="card">
-    <h1>Catonaut</h1>
+    <h3>Google Maps Button</h3>
     <div class="astronaut">
       <img
-        title="catonaut"
+        title="google-maps-button-icon"
         width="128"
         height="128"
         src="/assets/images/icon128.png"
-        alt="catonaut"
+        alt="google-maps-button-icon"
       />
+    </div>
+    <div class="github-container">
+        <a href="https://github.com/AminoffZ/google-maps-button">GitHub</a>
     </div>
   </div>
 </div>
 
 <style is:global>
   :root {
-    --primary: rgb(255, 161, 8);
-    --gradient-start: rgb(42, 35, 62);
-    --gradient-end: rgb(24, 21, 37);
+    --primary: #5fce66;
+    --shadow: 0 0 3rem rgba(0, 255, 255, 0.692);
   }
 
   body {
@@ -25,22 +27,41 @@
     font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
       sans-serif;
   }
-  h1 {
+  
+  h3 {
     color: white;
     text-align: center;
     margin-top: 0;
     font-weight: 900;
     margin-bottom: 1.5rem;
+    filter: drop-shadow(var(--shadow));
   }
+
+  a {
+    text-decoration: none;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: 1px solid white;
+    filter: drop-shadow(var(--shadow));
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
   .container {
     display: inline-block;
-    background: linear-gradient(
-      180deg,
-      var(--gradient-start) 50%,
-      var(--gradient-end) 100%
-    );
+    background-color: rgb(21, 0, 36);
     padding: 0.5rem;
   }
+
+  .github-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
   .card {
     background-color: rgba(255, 255, 255, 0.01);
     border-radius: 0.5rem;
@@ -48,10 +69,13 @@
     box-shadow: 0 0 3rem rgba(255, 255, 255, 0.1);
     width: 12rem;
   }
+
   .astronaut {
     text-align: center;
   }
+
   img {
-    filter: drop-shadow(0 0 1rem cyan);
+    filter: drop-shadow(var(--shadow));
+    margin-left: 0.5rem;
   }
 </style>

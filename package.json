@@ -1,5 +1,5 @@
 {
-  "name": "catonaut",
+  "name": "google-maps-button",
   "module": "bundler.ts",
   "version": "0.0.1",
   "dependencies": {
