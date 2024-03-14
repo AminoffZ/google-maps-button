@@ -1,3 +1,12 @@
+<script lang="ts">
+  document.addEventListener('DOMContentLoaded', () => {
+    const githubLinkElement = document.querySelector('.github-link');
+    githubLinkElement?.addEventListener('click', () => {
+      window.open('https://github.com/AminoffZ/google-maps-button', '_blank');
+    });
+  });
+</script>
+
 <div class="container">
   <div class="card">
     <h3>Google Maps Button</h3>
@@ -11,7 +20,7 @@
       />
     </div>
     <div class="github-container">
-        <a href="https://github.com/AminoffZ/google-maps-button">GitHub</a>
+        <div class="github-link">GitHub</div>
     </div>
   </div>
 </div>
@@ -37,7 +46,7 @@
     filter: drop-shadow(var(--shadow));
   }
 
-  a {
+  .github-link {
     text-decoration: none;
     color: white;
     border: none;

@@ -29,7 +29,6 @@ function createMapsButton(options: { location: string; retries: number }) {
        */
       document.querySelector("[aria-label='Add Map'")?.parentElement ??
       <Element>nav.item(0)?.lastChild;
-    console.log(mapsElement);
     if (!mapsElement) {
       throw 'mapsElement could not be created';
     }
