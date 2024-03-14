@@ -16,7 +16,6 @@ function createMapsButton(location?: string) {
   }
 
   const mapsElement = <Element>nav.item(0)?.lastChild;
-  console.log(nav.length);
   if (!mapsElement) {
     console.warn('mapsElement could not be created');
     return;
