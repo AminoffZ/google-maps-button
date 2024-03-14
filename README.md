@@ -2,7 +2,7 @@
 
 # Google Maps Button
 
-A browser extension that re-adds the Google Maps link to searches following its removal due to [EU-regulations](https://digital-markets-act.ec.europa.eu/index_en). 
+A browser extension that re-adds the Google Maps link to searches following its removal due to [EU-regulations](https://digital-markets-act.ec.europa.eu/index_en).
 
 ## LICENSE
 
