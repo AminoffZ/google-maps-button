@@ -1,3 +1,11 @@
+/**
+ * Create a maps button in the google search page
+ * that will redirect to google maps with the search query.
+ *
+ * @param options - The options for the maps button
+ * @param options.location - The user location
+ * @param options.retries - The number of retries to create the maps button
+ */
 function createMapsButton(options: { location: string; retries: number }) {
   try {
     const search = document.querySelector('textarea');
@@ -66,7 +74,6 @@ function main() {
   ),
     {
       timeout: 5000,
-      maximumAge: 0,
     };
 }
 
