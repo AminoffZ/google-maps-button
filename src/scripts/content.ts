@@ -1,44 +1,55 @@
-function createMapsButton(location?: string) {
-  const search = document.querySelector('textarea');
+function createMapsButton(options: { location: string; retries: number }) {
+  try {
+    const search = document.querySelector('textarea');
 
-  if (!search) {
-    console.warn('search bar not found');
-    return;
+    if (!search) {
+      throw 'search bar not found';
+    }
+
+    const searchText = search.textContent?.replaceAll(' ', '+');
+
+    // Selector might change in the future
+    const nav = document.getElementsByClassName('IUOThf');
+    if (!nav) {
+      throw 'nav not found';
+    }
+
+    const mapsElement = <Element>nav.item(0)?.lastChild;
+    console.log(mapsElement);
+    if (!mapsElement) {
+      throw 'mapsElement could not be created';
+    }
+
+    const mapsSpan = mapsElement.querySelector('span');
+    if (!mapsSpan) {
+      throw 'mapsSpan not found';
+    }
+
+    mapsSpan.textContent = 'Maps';
+
+    const mapsAnchor = mapsElement.querySelector('a');
+    if (!mapsAnchor) {
+      throw 'mapsAnchor not found';
+    }
+
+    mapsAnchor.setAttribute(
+      'href',
+      `https://www.google.com/maps/search/${searchText}/@${options.location}`
+    );
+  } catch (e) {
+    console.error(e);
+    if (options.retries > 0) {
+      console.log('Retrying...');
+      setTimeout(
+        () =>
+          createMapsButton({
+            location: options.location,
+            retries: options.retries - 1,
+          }),
+        1000
+      );
+    }
   }
-
-  const searchText = search.textContent?.replaceAll(' ', '+');
-
-  // Selector might change in the future
-  const nav = document.getElementsByClassName('IUOThf');
-  if (!nav) {
-    console.warn('nav not found');
-    return;
-  }
-
-  const mapsElement = <Element>nav.item(0)?.lastChild;
-  if (!mapsElement) {
-    console.warn('mapsElement could not be created');
-    return;
-  }
-
-  const mapsSpan = mapsElement.querySelector('span');
-  if (!mapsSpan) {
-    console.warn('mapsSpan not found');
-    return;
-  }
-
-  mapsSpan.textContent = 'Maps';
-
-  const mapsAnchor = mapsElement.querySelector('a');
-  if (!mapsAnchor) {
-    console.warn('mapsAnchor not found');
-    return;
-  }
-
-  mapsAnchor.setAttribute(
-    'href',
-    `https://www.google.com/maps/search/${searchText}/@${location}`
-  );
 }
 
 function main() {
@@ -46,11 +57,11 @@ function main() {
   navigator.geolocation.getCurrentPosition(
     (success) => {
       const location = success.coords.latitude + ',' + success.coords.longitude;
-      createMapsButton(location);
+      createMapsButton({ location: location, retries: 3 });
     },
     (error) => {
       console.error(error);
-      createMapsButton();
+      createMapsButton({ location: '', retries: 3 });
     }
   ),
     {
