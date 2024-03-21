@@ -1,3 +1,5 @@
+import { TRANSLATIONS } from './internal/translations';
+
 /**
  * Create a maps button in the google search page
  * that will redirect to google maps with the search query.
@@ -14,6 +16,7 @@ function createMapsButton(options: { location: string; retries: number }) {
       throw 'search bar not found';
     }
 
+    // Replace spaces with '+' for the google maps search
     const searchText = search.textContent?.replaceAll(' ', '+');
 
     // Selector might change in the future
@@ -22,14 +25,24 @@ function createMapsButton(options: { location: string; retries: number }) {
       throw 'nav not found';
     }
 
+    // Get the language of the page (default to English)
+    const language = document.documentElement.lang.split('-')[0] ?? 'en';
+
+    // Using the aria-label, find existing 'Maps' or 'Map' buttons (incl. translations)
+    const existingMapsElement =
+      document.querySelector(
+        `[aria-label='${TRANSLATIONS[language]['Add Maps']}'`
+      )?.parentElement ??
+      document.querySelector(
+        `[aria-label='${TRANSLATIONS[language]['Add Map']}'`
+      )?.parentElement;
+
     const mapsElement =
       /* Replaces the Google-provided 'Maps' or 'Map' button that only shows an image
        * of the map (which is useless). Otherwise, it will replace the
        * last element in the nav bar. The selector might change in the future.
        */
-      document.querySelector("[aria-label='Add Maps'")?.parentElement ??
-      document.querySelector("[aria-label='Add Map'")?.parentElement ??
-      <Element>nav.item(0)?.lastChild;
+      existingMapsElement ?? <Element>nav.item(0)?.lastChild;
     if (!mapsElement) {
       throw 'mapsElement could not be created';
     }
@@ -39,17 +52,35 @@ function createMapsButton(options: { location: string; retries: number }) {
       throw 'mapsSpan not found';
     }
 
-    mapsSpan.textContent = 'Maps';
+    mapsSpan.textContent = TRANSLATIONS[language]['Maps'];
 
     const mapsAnchor = mapsElement.querySelector('a');
     if (!mapsAnchor) {
       throw 'mapsAnchor not found';
     }
 
+    // Set the href to the google maps search
     mapsAnchor.setAttribute(
       'href',
       `https://www.google.com/maps/search/${searchText}/@${options.location}`
     );
+
+    // Style the maps button
+    mapsSpan.style.justifyContent = 'center';
+    mapsSpan.style.display = 'flex';
+    mapsSpan.style.flexDirection = 'row-reverse';
+
+    // Add the logo
+    const logo = document.createElement('img');
+    logo.src = chrome.runtime.getURL('assets/images/icon16.png');
+    mapsSpan.appendChild(logo);
+
+    // Set the button as the second element in the nav bar
+    const secondNavElement =
+      mapsElement?.parentElement?.firstChild?.nextSibling;
+    if (secondNavElement) {
+      mapsElement.parentElement?.insertBefore(mapsElement, secondNavElement);
+    }
   } catch (e) {
     console.error(e);
     if (options.retries > 0) {
