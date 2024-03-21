@@ -33,29 +33,33 @@ function createMapsButton(options: { location: string; retries: number }) {
     const searchText = search.textContent?.replaceAll(' ', '+');
 
     // Selector might change in the future
-    const nav = document.getElementsByClassName('IUOThf');
+    const nav = document.getElementsByClassName('IUOThf').item(0);
     if (!nav) {
       throw 'nav not found';
     }
 
     // Get the language of the page (default to English)
     const language = document.documentElement.lang.split('-')[0] ?? 'en';
+    console.log('Language:', language);
+    const translations = TRANSLATIONS[language];
+    console.log('Translations:', translations);
+    if (!translations) {
+      console.warn('Translations not found');
+    }
 
     // Using the aria-label, find existing 'Maps' or 'Map' buttons (incl. translations)
     const existingMapsElement =
-      document.querySelector(
-        `[aria-label='${TRANSLATIONS[language]['Add Maps']}'`
-      )?.parentElement ??
-      document.querySelector(
-        `[aria-label='${TRANSLATIONS[language]['Add Map']}'`
-      )?.parentElement;
+      document.querySelector(`[aria-label='${translations?.['Add Maps']}'`)
+        ?.parentElement ??
+      document.querySelector(`[aria-label='${translations?.['Add Map']}'`)
+        ?.parentElement;
 
     const mapsElement =
       /* Replaces the Google-provided 'Maps' or 'Map' button that only shows an image
        * of the map (which is useless). Otherwise, it will replace the
        * last element in the nav bar. The selector might change in the future.
        */
-      existingMapsElement ?? <Element>nav.item(0)?.lastChild;
+      existingMapsElement ?? <Element>nav.lastChild;
     if (!mapsElement) {
       throw 'mapsElement could not be created';
     }
@@ -65,7 +69,7 @@ function createMapsButton(options: { location: string; retries: number }) {
       throw 'mapsSpan not found';
     }
 
-    mapsSpan.textContent = TRANSLATIONS[language]['Maps'];
+    mapsSpan.textContent = TRANSLATIONS[language]?.['Maps'] ?? 'Maps';
 
     const mapsAnchor = mapsElement.querySelector('a');
     if (!mapsAnchor) {
@@ -78,19 +82,15 @@ function createMapsButton(options: { location: string; retries: number }) {
       `https://www.google.com/maps/search/${searchText}/@${options.location}`
     );
 
-    // Set the button as the second element in the nav bar
-    const secondNavElement =
-      mapsElement?.parentElement?.firstChild?.nextSibling;
-    if (secondNavElement) {
-      mapsElement.parentElement?.insertBefore(mapsElement, secondNavElement);
-    }
-
     // Add the logo if it is enabled
     storage.get('google-maps-button-logo-enabled', (result) => {
       if (result['google-maps-button-logo-enabled'] === 'true') {
         addLogo(mapsSpan);
       }
     });
+
+    // Set the button as the second element in the nav bar
+    nav.insertBefore(mapsElement, nav.firstChild);
   } catch (e) {
     console.error(e);
     if (options.retries > 0) {
