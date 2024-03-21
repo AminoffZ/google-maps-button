@@ -23,7 +23,6 @@
       .set(storedItem)
       .then(() => {
         logoEnabled = storedItem[LOGO_ENABLED];
-        console.log('logoEnabled', logoEnabled);
       })
       .catch((err) => {
         console.error(err);
@@ -32,7 +31,6 @@
 
   onMount(async () => {
     logoEnabled = await logoEnabledStored();
-    console.log('logoEnabled', logoEnabled);
   });
 </script>
 

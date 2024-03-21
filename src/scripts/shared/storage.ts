@@ -1,4 +1,4 @@
-export const LOGO_ENABLED = 'google-maps-button-logo-enabled'
+export const LOGO_ENABLED = 'google-maps-button-logo-enabled';
 
 let storage;
 

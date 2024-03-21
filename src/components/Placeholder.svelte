@@ -1,11 +1,10 @@
 <script lang="ts">
   import LogoToggle from './LogoToggle.svelte';
-  document.addEventListener('DOMContentLoaded', () => {
-    const githubLinkElement = document.querySelector('.github-link');
-    githubLinkElement?.addEventListener('click', () => {
-      window.open('https://github.com/AminoffZ/google-maps-button', '_blank');
-    });
-  });
+  
+  function openGitHub() {
+    window.open('https://github.com/AminoffZ/google-maps-button', '_blank');
+  }
+
 </script>
 
 <div class="container">
@@ -13,7 +12,9 @@
     <h3>Google Maps Button</h3>
     <LogoToggle />
     <div class="github-container">
-        <div class="github-link">GitHub</div>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <div on:click={openGitHub} class="github-link">GitHub</div>
     </div>
   </div>
 </div>

@@ -40,9 +40,7 @@ function createMapsButton(options: { location: string; retries: number }) {
 
     // Get the language of the page (default to English)
     const language = document.documentElement.lang.split('-')[0] ?? 'en';
-    console.log('Language:', language);
     const translations = TRANSLATIONS[language];
-    console.log('Translations:', translations);
     if (!translations) {
       console.warn('Translations not found');
     }
