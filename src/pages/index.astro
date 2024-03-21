@@ -1,5 +1,5 @@
 ---
-import Placeholder from '../components/Placeholder.astro';
+import Placeholder from '../components/Placeholder.svelte';
 ---
 
 <html lang="en">
@@ -11,6 +11,14 @@ import Placeholder from '../components/Placeholder.astro';
     <title>Google Maps Button</title>
   </head>
   <body>
-    <Placeholder />
+    <Placeholder client:only />
   </body>
 </html>
+
+<style>
+  body {
+    margin: 0;
+    font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+      sans-serif;
+  }
+</style>

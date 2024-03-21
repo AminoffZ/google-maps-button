@@ -33,5 +33,6 @@
       "resources": ["assets/images/icon16.png"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+  "permissions": ["storage"]
 }

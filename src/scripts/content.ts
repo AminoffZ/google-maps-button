@@ -1,4 +1,17 @@
 import { TRANSLATIONS } from './internal/translations';
+import storage from './shared/storage';
+
+function addLogo(mapsSpan: HTMLSpanElement) {
+  // Style the maps button to include the logo
+  mapsSpan.style.justifyContent = 'center';
+  mapsSpan.style.display = 'flex';
+  mapsSpan.style.flexDirection = 'row-reverse';
+
+  // Add the logo
+  const logo = document.createElement('img');
+  logo.src = chrome.runtime.getURL('assets/images/icon16.png');
+  mapsSpan.appendChild(logo);
+}
 
 /**
  * Create a maps button in the google search page
@@ -65,22 +78,19 @@ function createMapsButton(options: { location: string; retries: number }) {
       `https://www.google.com/maps/search/${searchText}/@${options.location}`
     );
 
-    // Style the maps button
-    mapsSpan.style.justifyContent = 'center';
-    mapsSpan.style.display = 'flex';
-    mapsSpan.style.flexDirection = 'row-reverse';
-
-    // Add the logo
-    const logo = document.createElement('img');
-    logo.src = chrome.runtime.getURL('assets/images/icon16.png');
-    mapsSpan.appendChild(logo);
-
     // Set the button as the second element in the nav bar
     const secondNavElement =
       mapsElement?.parentElement?.firstChild?.nextSibling;
     if (secondNavElement) {
       mapsElement.parentElement?.insertBefore(mapsElement, secondNavElement);
     }
+
+    // Add the logo if it is enabled
+    storage.get('google-maps-button-logo-enabled', (result) => {
+      if (result['google-maps-button-logo-enabled'] === 'true') {
+        addLogo(mapsSpan);
+      }
+    });
   } catch (e) {
     console.error(e);
     if (options.retries > 0) {

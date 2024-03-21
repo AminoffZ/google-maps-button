@@ -1,4 +1,5 @@
 <script lang="ts">
+  import LogoToggle from './LogoToggle.svelte';
   document.addEventListener('DOMContentLoaded', () => {
     const githubLinkElement = document.querySelector('.github-link');
     githubLinkElement?.addEventListener('click', () => {
@@ -10,33 +11,14 @@
 <div class="container">
   <div class="card">
     <h3>Google Maps Button</h3>
-    <div class="astronaut">
-      <img
-        title="google-maps-button-icon"
-        width="128"
-        height="128"
-        src="/assets/images/icon128.png"
-        alt="google-maps-button-icon"
-      />
-    </div>
+    <LogoToggle />
     <div class="github-container">
         <div class="github-link">GitHub</div>
     </div>
   </div>
 </div>
 
-<style is:global>
-  :root {
-    --primary: #5fce66;
-    --shadow: 0 0 3rem rgba(0, 255, 255, 0.692);
-  }
-
-  body {
-    margin: 0;
-    font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
-      sans-serif;
-  }
-  
+<style>
   h3 {
     color: white;
     text-align: center;
@@ -77,14 +59,7 @@
     padding: 1rem 1.5rem 1.5rem 1.5rem;
     box-shadow: 0 0 3rem rgba(255, 255, 255, 0.1);
     width: 12rem;
-  }
-
-  .astronaut {
-    text-align: center;
-  }
-
-  img {
-    filter: drop-shadow(var(--shadow));
-    margin-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
   }
 </style>

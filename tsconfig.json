@@ -28,5 +28,4 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },
-  "extends": "astro/tsconfigs/strict"
 }
