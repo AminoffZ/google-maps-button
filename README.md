@@ -1,4 +1,5 @@
-[![Google Chrome](https://img.shields.io/chrome-web-store/v/lgjpodcefhkcimjlidbebbjnjafhjcfm?label=Install&logo=Google%20Chrome)](https://chrome.google.com/webstore/detail/google-maps-button/lgjpodcefhkcimjlidbebbjnjafhjcfm)
+[![Chrome](https://img.shields.io/chrome-web-store/v/lgjpodcefhkcimjlidbebbjnjafhjcfm?label=Install%20on%20Chrome&logo=Google%20Chrome)](https://chrome.google.com/webstore/detail/google-maps-button/lgjpodcefhkcimjlidbebbjnjafhjcfm)
+[![Firefox](https://img.shields.io/amo/v/google-maps-button?label=Install%20on%20Firefox&logo=Firefox)](https://addons.mozilla.org/en-US/firefox/addon/google-maps-button/)
 
 <img src="https://github.com/AminoffZ/google-maps-button/blob/main/public/assets/images/icon128.png?raw=true" align="right" width="128" height="128" title="google-maps-button-icon">
 
