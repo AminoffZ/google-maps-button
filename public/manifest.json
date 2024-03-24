@@ -10,9 +10,6 @@
       "css": ["content.css"]
     }
   ],
-  "background": {
-    "service_worker": "background.js"
-  },
   "action": {
     "default_popup": "index.html"
   },
