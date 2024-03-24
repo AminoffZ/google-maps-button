@@ -1,5 +1,6 @@
 import type { Translations } from '.';
 
+// TODO: replace 'Maps' according to the language
 export const TRANSLATIONS: Translations = {
   en: {
     Maps: 'Maps',

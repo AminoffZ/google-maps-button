@@ -33,7 +33,7 @@ function createMapsButton(options: { location: string; retries: number }) {
     const searchText = search.textContent?.replaceAll(' ', '+');
 
     // Selector might change in the future
-    const nav = document.getElementsByClassName('IUOThf').item(0);
+    const nav = document.getElementsByClassName('crJ18e').item(0);
     if (!nav) {
       throw 'nav not found';
     }
@@ -57,17 +57,19 @@ function createMapsButton(options: { location: string; retries: number }) {
        * of the map (which is useless). Otherwise, it will replace the
        * last element in the nav bar. The selector might change in the future.
        */
-      existingMapsElement ?? <Element>nav.lastChild;
+      existingMapsElement ??
+      <Element>nav.children[nav.children.length - 2] ??
+      nav.children[1];
     if (!mapsElement) {
       throw 'mapsElement could not be created';
     }
 
-    const mapsSpan = mapsElement.querySelector('span');
-    if (!mapsSpan) {
+    const mapsTextDivElement = mapsElement.querySelector('div');
+    if (!mapsTextDivElement) {
       throw 'mapsSpan not found';
     }
 
-    mapsSpan.textContent = TRANSLATIONS[language]?.['Maps'] ?? 'Maps';
+    mapsTextDivElement.textContent = TRANSLATIONS[language]?.['Maps'] ?? 'Maps';
 
     const mapsAnchor = mapsElement.querySelector('a');
     if (!mapsAnchor) {
@@ -83,12 +85,12 @@ function createMapsButton(options: { location: string; retries: number }) {
     // Add the logo if it is enabled
     storage.get('google-maps-button-logo-enabled', (result) => {
       if (result['google-maps-button-logo-enabled'] === 'true') {
-        addLogo(mapsSpan);
+        addLogo(mapsTextDivElement);
       }
     });
 
     // Set the button as the second element in the nav bar
-    nav.insertBefore(mapsElement, nav.firstChild);
+    nav.insertBefore(mapsElement, nav.children[1]);
   } catch (e) {
     console.error(e);
     if (options.retries > 0) {
