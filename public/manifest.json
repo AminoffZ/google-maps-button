@@ -15,7 +15,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "yourcustom@token.io",
+      "id": "google-maps-button@aminoffz.io",
       "strict_min_version": "42.0"
     }
   },
