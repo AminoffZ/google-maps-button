@@ -108,6 +108,13 @@ function createMapsButton(options: { location: string; retries: number }) {
 }
 
 function main() {
+  // @ts-ignore
+  if (typeof InstallTrigger !== 'undefined') {
+    // Firefox
+    createMapsButton({ location: '', retries: 3 });
+    return;
+  }
+
   // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
   navigator.geolocation.getCurrentPosition(
     (success) => {
@@ -120,7 +127,9 @@ function main() {
     }
   ),
     {
-      timeout: 5000,
+      maximumAge: Infinity,
+      enableHighAccuracy: false,
+      timeout: 500,
     };
 }
 

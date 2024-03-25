@@ -19,9 +19,10 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build && cd build-tools && bun run csp && bun bundler.ts",
+    "postbuild": "./create-zip.sh",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,md}' '!build/**' '!node_modules/**'",
+    "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,md}' '!dist/**' '!node_modules/**'",
     "csp": "bun extract-inline.ts",
     "icons": "cd build-tools && bun create-icons.ts"
   },
