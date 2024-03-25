@@ -47,9 +47,9 @@ function createMapsButton(options: { location: string; retries: number }) {
 
     // Using the aria-label, find existing 'Maps' or 'Map' buttons (incl. translations)
     const existingMapsElement =
-      document.querySelector(`[aria-label='${translations?.['Add Maps']}'`)
+      nav.querySelector(`[aria-label='${translations?.['Add Maps']}'`)
         ?.parentElement ??
-      document.querySelector(`[aria-label='${translations?.['Add Map']}'`)
+      nav.querySelector(`[aria-label='${translations?.['Add Map']}'`)
         ?.parentElement;
 
     const mapsElement =
