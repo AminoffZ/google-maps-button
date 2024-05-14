@@ -33,7 +33,9 @@ function createMapsButton(options: { location: string; retries: number }) {
     const searchText = search.textContent?.replaceAll(' ', '+');
 
     // Selector might change in the future
-    const nav = document.getElementsByClassName('crJ18e').item(0);
+    const nav = <Element>(
+      document.getElementsByClassName('crJ18e').item(0)?.firstChild
+    );
     if (!nav) {
       throw 'nav not found';
     }
