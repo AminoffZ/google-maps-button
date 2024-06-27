@@ -60,8 +60,9 @@ function createMapsButton(options: { location: string; retries: number }) {
        * last element in the nav bar. The selector might change in the future.
        */
       existingMapsElement ??
-      <Element>nav.children[nav.children.length - 2] ??
-      nav.children[1];
+      <Element>nav.querySelectorAll('[role=listitem]').item(-2) ??
+      nav.querySelectorAll('[role=listitem]').item(1);
+
     if (!mapsElement) {
       throw 'mapsElement could not be created';
     }
