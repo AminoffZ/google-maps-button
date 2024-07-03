@@ -54,14 +54,16 @@ function createMapsButton(options: { location: string; retries: number }) {
       nav.querySelector(`[aria-label='${translations?.['Add Map']}'`)
         ?.parentElement;
 
+    const navItems = Array.from(
+      nav.querySelectorAll('[role=listitem]:not([class])')
+    );
+
     const mapsElement =
       /* Replaces the Google-provided 'Maps' or 'Map' button that only shows an image
        * of the map (which is useless). Otherwise, it will replace the
        * last element in the nav bar. The selector might change in the future.
        */
-      existingMapsElement ??
-      Array.from(nav.querySelectorAll('[role=listitem]')).at(-2) ??
-      nav.querySelectorAll('[role=listitem]').item(1);
+      existingMapsElement ?? navItems.at(-2) ?? navItems.at(1);
 
     if (!mapsElement) {
       throw 'mapsElement could not be created';
