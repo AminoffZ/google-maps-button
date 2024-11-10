@@ -22,4 +22,9 @@ export const TRANSLATIONS: Translations = {
     'Add Map': 'Ajouter Carte',
     'Add Maps': 'Ajouter Maps',
   },
+  hu: {
+    Maps: 'Térképek',
+    'Add Map': 'Térkép hozzáadása',
+    'Add Maps': 'Térképek hozzáadása',
+  },
 };
