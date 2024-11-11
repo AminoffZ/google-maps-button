@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Google Maps Button",
   "description": "A browser extension that re-adds the Google Maps link to searches.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "content_scripts": [
     {
       "matches": [
