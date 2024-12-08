@@ -32,4 +32,9 @@ export const TRANSLATIONS: Translations = {
     'Add Map': 'Lisää kartta',
     'Add Maps': 'Lisää karttoja',
   },
+  pl: {
+    Maps: 'Mapy',
+    'Add Map': 'Dodaj Mapę',
+    'Add Maps': 'Dodaj Mapy',
+  },
 };
