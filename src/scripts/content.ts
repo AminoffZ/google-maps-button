@@ -34,7 +34,7 @@ function createMapsButton(options: { location: string; retries: number }) {
 
     // Selector might change in the future
     const nav = <Element>(
-      document.getElementsByClassName('crJ18e').item(0)?.firstChild
+      document.getElementsByClassName('beZ0tf O1uzAe').item(0)
     );
     if (!nav) {
       throw 'nav not found';
@@ -69,12 +69,12 @@ function createMapsButton(options: { location: string; retries: number }) {
       throw 'mapsElement could not be created';
     }
 
-    const mapsTextDivElement = mapsElement.querySelector('div');
-    if (!mapsTextDivElement) {
+    const mapsSpanElement = mapsElement.querySelector('span');
+    if (!mapsSpanElement) {
       throw 'mapsSpan not found';
     }
 
-    mapsTextDivElement.textContent = TRANSLATIONS[language]?.['Maps'] ?? 'Maps';
+    mapsSpanElement.textContent = TRANSLATIONS[language]?.['Maps'] ?? 'Maps';
 
     const mapsAnchor = mapsElement.querySelector('a');
     if (!mapsAnchor) {
@@ -90,7 +90,7 @@ function createMapsButton(options: { location: string; retries: number }) {
     // Add the logo if it is enabled
     storage.get('google-maps-button-logo-enabled', (result) => {
       if (result['google-maps-button-logo-enabled'] === 'true') {
-        addLogo(mapsTextDivElement);
+        addLogo(mapsSpanElement);
       }
     });
 
