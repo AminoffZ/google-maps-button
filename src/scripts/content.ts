@@ -33,9 +33,7 @@ function createMapsButton(options: { location: string; retries: number }) {
     const searchText = search.textContent?.replaceAll(' ', '+');
 
     // Selector might change in the future
-    const nav = <Element>(
-      document.getElementsByClassName('beZ0tf O1uzAe').item(0)
-    );
+    const nav = document.querySelector('.beZ0tf[role=list]');
     if (!nav) {
       throw 'nav not found';
     }
@@ -54,8 +52,9 @@ function createMapsButton(options: { location: string; retries: number }) {
       nav.querySelector(`[aria-label='${translations?.['Add Map']}'`)
         ?.parentElement;
 
+    // Direct children only, so items inside the 'More' dropdown are skipped
     const navItems = Array.from(
-      nav.querySelectorAll('[role=listitem]:not([class])')
+      nav.querySelectorAll(':scope > [role=listitem]:not([class])')
     );
 
     const mapsElement =
